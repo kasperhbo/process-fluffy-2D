@@ -25,12 +25,7 @@ public static class Window{
         
         return Window.window;
     }
-    
-    public static Scene GetCurrentScene(){
-      return currentScene;
-    }
-
-    
+        
     public void Render(){
         if (dt >= 0) {
             currentScene.FixedUpdate(dt);
@@ -42,6 +37,12 @@ public static class Window{
         dt = endTime - beginTime;
         beginTime = endTime;
     }  
+
+    
+    public static Scene GetCurrentScene(){
+      return currentScene;
+    }
+
 
     private float timeStarted = System.nanoTime();
 

@@ -10,7 +10,8 @@ public class LevelScene extends Scene{
     public LevelScene(){        
         
     }
-    
+
+    @Override
     public void Init(String name){
         System.out.println("Inside level scene");
         super.Init("Level Scene");     
@@ -32,6 +33,7 @@ public class LevelScene extends Scene{
         AddGameobjectToScene(go2);
     }
         
+    @Override
     public void FixedUpdate(float dt){
         super.FixedUpdate(dt);        
         
@@ -49,6 +51,7 @@ public class LevelScene extends Scene{
         go.transform.position.y += 10 * dt; //Right way to change position because this is frame dependent       
     }
     
+    @Override
     public void Render(){
         super.Render();
     }

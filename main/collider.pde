@@ -7,13 +7,9 @@ public abstract class Collider{
     {
         
     }
-
+    
     public void Init(GameObject parent){
         this.parent = parent;
-    }
-    
-    public GameObject GetParent(){
-      return parent;
     }
 
     public void ClearCollisions(){
@@ -23,13 +19,18 @@ public abstract class Collider{
     public void AddCollision(Collider other){
         collisions.add(other);
     }
+
+    public abstract boolean IsPointInCollider(float px, float py);
+    public abstract void Visualize();
     
     public ArrayList<Collider> GetCollisions(){
       return collisions;
     }
 
-    public abstract boolean IsPointInCollider(float px, float py);
-    public abstract void Visualize();
+    public GameObject GetParent(){
+      return parent;
+    }
+
 }
 
 public static class Collision{  

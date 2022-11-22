@@ -15,7 +15,6 @@ class GameObject{
         transform.position = new Vector2();
         transform.scale = new Vector2();
     } 
-
     
     public GameObject(String name, Vector2 scale)
     {

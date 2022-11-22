@@ -35,6 +35,7 @@ public class BoxCollider extends Collider{
         box1Y + box1H > box2Y);
     }   
     
+    @Override
     public void Visualize(){
       /**
        * Points and Lines. 
