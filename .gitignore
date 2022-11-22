@@ -1,12 +1,12 @@
 .DS_Store
-applet
-application.linux-arm64
-application.linux-armv6hf
-application.linux32
-application.linux64
-application.windows32
-application.windows64
-application.macosx
+/main/applet
+/main/application.linux-arm64
+/main/application.linux-armv6hf
+/main/application.linux32
+/main/application.linux64
+/main/application.windows32
+/main/application.windows64
+/main/application.macosx
 
 .vscode/*
 !.vscode/settings.json
@@ -20,5 +20,7 @@ application.macosx
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+/main/*.autosave
 
 out

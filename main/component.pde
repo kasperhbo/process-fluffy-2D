@@ -1,7 +1,8 @@
 public abstract class Component{
+  
     protected GameObject gameObject;
     
-    public void Start(GameObject go){
+    public Component(GameObject go){
         this.gameObject = go;
     }
 

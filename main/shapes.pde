@@ -4,13 +4,15 @@ public abstract class Shape extends Component{
     public float x;
     public float y;
 
-    public Shape(float startX, float startY){
+    public Shape(GameObject go, float startX, float startY){
+        super(go);
         this.x = startX;
         this.y = startY;
         this.fillColor = new Vector4();
     }
     
-      public Shape(float startX, float startY, Vector4 fillColor){
+      public Shape(GameObject go, float startX, float startY, Vector4 fillColor){
+        super(go);
         this.x = startX;
         this.y = startY;
         this.fillColor = fillColor;
@@ -31,16 +33,16 @@ public class Rect extends Shape{
     public float width;
     public float height;
 
-    public Rect(float x, float y, float width, float height)
+    public Rect(GameObject go, float x, float y, float width, float height)
     {
-        super(x, y);
+        super(go, x, y);
         this.width = width;
         this.height = height;
     }
 
-    public Rect(float startX, float startY, float width, float height, Vector4 fillColor)
+    public Rect(GameObject go, float startX, float startY, float width, float height, Vector4 fillColor)
     {
-        super(startX, startY, fillColor);
+        super(go, startX, startY, fillColor);
         this.width = width;
         this.height = height;
     }
@@ -57,15 +59,15 @@ public class Rect extends Shape{
 public class Circle extends Shape{
     float extent;
 
-    public Circle(float x, float y, float extent)
+    public Circle(GameObject go, float x, float y, float extent)
     {
-        super(x,y);
+        super(go, x,y);
         this.extent = extent;
     }
     
-    public Circle(float x, float y, float extent, Vector4 fillColor)
+    public Circle(GameObject go,float x, float y, float extent, Vector4 fillColor)
     {
-        super(x,y, fillColor);
+        super(go, x, y, fillColor);
         this.extent = extent;
     }
 

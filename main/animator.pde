@@ -5,7 +5,8 @@ public class Animator extends Component{
     int imageCount;
     int frame;
 
-    Animator(String[] imagesToLoad) {
+    Animator(GameObject go, String[] imagesToLoad) {
+        super(go);
         images = new PImage[imagesToLoad.length];
         
         for (int i = 0; i < imagesToLoad.length; ++i) {

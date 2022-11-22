@@ -1,10 +1,14 @@
+import java.util.Map;
+
 public abstract class Scene{
   protected final String name;    
   
   protected Camera camera;
   protected Vector4 clearColor;
   
-  private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+  private HashMap<String, GameObject> gameObjects = new HashMap<String, GameObject>();
+   
+  private AudioSource bgMusic = null;
   
   public Scene(String name){
     this.name = name;
@@ -26,24 +30,47 @@ public abstract class Scene{
   
   public void AddGameobjectToScene(GameObject go)
   {
-      gameObjects.add(go);
+    gameObjects.put(go.GetName(), go);
   }
   
   public void AddGameobjectsToScene(GameObject[] gos)
   {
-      for(GameObject go : gos)
-        gameObjects.add(go);
+    for(GameObject go : gos)
+      gameObjects.put(go.GetName(), go);
   }
   
   public void FixedUpdate(float dt){
-    for(GameObject object : gameObjects) {
-      object.FixedUpdate(dt);
+    for (Map.Entry obj : gameObjects.entrySet()) {
+      GameObject go = gameObjects.get(obj.getKey());
+      go.FixedUpdate(dt);
     }
   }
   
   public void Update(float dt){
-    for(GameObject object : gameObjects) {
-      object.Update(dt);
+    for (Map.Entry obj : gameObjects.entrySet()) {
+      GameObject go = gameObjects.get(obj.getKey());
+      go.Update(dt);
+    }
+  }
+  
+  protected void AddBackgroundMusic(AudioSource src){
+    this.bgMusic = src;
+  }
+  
+  protected void PlayBackgroundMusic(){
+    this.bgMusic.Play();
+  }
+  
+  protected void StopBackgroundMusic(){
+    this.bgMusic.Stop();
+  }
+  
+  protected GameObject GetGameObjectInScene(String identifier) throws Exception {
+    if(gameObjects.containsKey(identifier)) {
+      return gameObjects.get(identifier);
+    }
+    else {
+      throw new Exception("Gameobject not found with name: "+ identifier);
     }
   }
   
@@ -52,9 +79,10 @@ public abstract class Scene{
     
     //Color is normalized
     background((int)clearColor.x * 255, (int)clearColor.y * 255, (int)clearColor.z * 255, (int)clearColor.w * 255);
-        
-    for(GameObject object : gameObjects) {
-      object.Render(camera);
+          
+    for (Map.Entry obj : gameObjects.entrySet()) {
+      GameObject go = gameObjects.get(obj.getKey());
+      go.Render(camera);
     }
   }        
 }

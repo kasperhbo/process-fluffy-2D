@@ -5,7 +5,7 @@ float endTime;
 float dt = -1.0f;
 
 void setup() {
-    currentScene = new levelScene();
+    currentScene = new LevelScene();
     size(800, 800);
 }
 

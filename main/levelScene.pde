@@ -1,30 +1,45 @@
-public class levelScene extends Scene{
+public class LevelScene extends Scene{
 
     GameObject go;
+    
     boolean firstRun = true;
 
-    public levelScene(){
-        super("Level Scene");        
+    public LevelScene(){
+        
+      super("Level Scene");     
+        
         this.clearColor = new Vector4(1,0,0,1);
 
         go = new GameObject("harry", new Vector2(400, 400), new Vector2(50,50));
-        SpriteRenderer rend = new SpriteRenderer("apple.png");
+        
+        BoxCollider col = new BoxCollider(go);        
+        SpriteRenderer rend = new SpriteRenderer(go, "apple.png");
+
         go.AddComponent(rend);
+        go.AddCollider(col);
+        
         AddGameobjectToScene(go);
 
     }
         
     public void FixedUpdate(float dt){
         super.FixedUpdate(dt);
-        go.transform.position.x += 30 * dt;
     }
     
     public void Update(float dt){
-        if(firstRun){
+      
+      super.Update(dt);  
+      
+      if(firstRun){
             firstRun = false; return;
-        }
-        // print(go.transform.position.x + "\n");
-        super.Update(dt);
+      }          
+      
+      BoxCollider box = go.GetCollider(BoxCollider.class);
+      
+      if(box.IsPointInCollider(mouseX, mouseY)){
+        print("in collider");
+      }
+      
     }
     
     public void Render(){
