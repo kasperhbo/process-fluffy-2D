@@ -36,7 +36,6 @@ public static class Window{
             currentScene.FixedUpdate(dt);
         }
         
-        currentScene.Update(dt);
         currentScene.Render();
         
         endTime = getTime();

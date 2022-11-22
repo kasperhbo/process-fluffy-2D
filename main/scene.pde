@@ -1,4 +1,6 @@
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Scene{
   
@@ -49,13 +51,56 @@ public abstract class Scene{
       GameObject go = gameObjects.get(obj.getKey());
       go.FixedUpdate(dt);
     }
+    
+    CollisionCheck();
   }
   
-  public void Update(float dt){
+  public void Render(){
+    //Color is normalized
+    background((int)clearColor.x * 255, (int)clearColor.y * 255, (int)clearColor.z * 255, (int)clearColor.w * 255);
+    
+    translate(camera.transform.position.x, camera.transform.position.y);    
+          
     for (Map.Entry obj : gameObjects.entrySet()) {
       GameObject go = gameObjects.get(obj.getKey());
-      go.Update(dt);
-    }
+      go.Render(camera);
+    }   
+
+  } 
+  
+  public void CollisionCheck(){    
+    //UpdateColliders //TODO: Add this
+    for (Map.Entry obj : gameObjects.entrySet()) {
+      GameObject go1 = gameObjects.get(obj.getKey());
+      
+      for (Collider col : go1.colliders) {
+        col.ClearCollisions();
+      }
+
+      for (Map.Entry obj1 : gameObjects.entrySet()) {
+        
+        GameObject go2 = gameObjects.get(obj1.getKey());
+        
+        for (Collider col1 : go1.colliders) {
+        
+          for (Collider col2 : go2.colliders) {            
+            if(col1 != col2){
+              if(col1.getClass() == BoxCollider.class && col2.getClass() == BoxCollider.class){
+                if(Collision.RectRect((BoxCollider)col1, (BoxCollider)col2)){ 
+                  if(Collision.RectRect((BoxCollider)col1, (BoxCollider)col2)){                        
+                    col1.collisions.add(col2);                
+                  }
+                }
+                //TODO: ADD CIRCLE COLLIDERS
+                // else if(Collision.RectRect((CircleCollider)col1, (BoxCollider)col2)){ 
+  
+                // }
+              }
+            }
+          }
+        }       
+      }
+   }   
   }
   
   protected void AddBackgroundMusic(AudioSource src){
@@ -78,28 +123,7 @@ public abstract class Scene{
       throw new Exception("Gameobject not found with name: "+ identifier);
     }
   }
-  
-  public void Render(){
-    translate(camera.transform.position.x, camera.transform.position.y);
     
-    //Color is normalized
-    background((int)clearColor.x * 255, (int)clearColor.y * 255, (int)clearColor.z * 255, (int)clearColor.w * 255);
-          
-    for (Map.Entry obj : gameObjects.entrySet()) {
-      GameObject go = gameObjects.get(obj.getKey());
-      go.Render(camera);
-    }
-    
-    //UpdateColliders //TODO: Add this
-    for (Map.Entry obj : gameObjects.entrySet()) {
-      GameObject go1 = gameObjects.get(obj.getKey());
-      for (Map.Entry obj1 : gameObjects.entrySet()) {
-        GameObject go2 = gameObjects.get(obj.getKey());
-        
-      }
-    }
-  } 
-  
   public void SetVisualizeColliders(boolean visualizeColliders){
     this.visualizeColliders = visualizeColliders;
   }    

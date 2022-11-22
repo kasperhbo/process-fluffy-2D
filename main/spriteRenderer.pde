@@ -2,19 +2,20 @@ public class SpriteRenderer extends Component{
 
     PImage image = null;  
     
-    public SpriteRenderer(GameObject go, String filePath)
+    public SpriteRenderer(String filePath)
     {
-      super(go);
+      super();
       image = loadImage(filePath);
     }
     
     @Override
-    public void FixedUpdate(float dt) {
+    public void Init(GameObject go)
+    {
+      super.Init(go);
     }
     
     @Override
-    public void Update(float dt) {
-      
+    public void FixedUpdate(float dt) {
     }
     
     @Override

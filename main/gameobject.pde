@@ -50,19 +50,15 @@ class GameObject{
       for (Component co : components) {
           co.FixedUpdate(dt);
       }
-    }
-    
-    public void Update(float dt){
-      for (Component co : components) {
-          co.Update(dt);
-      }
-    }
+    }  
 
     public void AddComponent(Component component){
+      component.Init(this);
       this.components.add(component);        
     }
     
     public void AddCollider(Collider col){
+      col.Init(this);
       this.colliders.add(col);        
     }
     
