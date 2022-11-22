@@ -48,6 +48,8 @@ public abstract class Scene{
   }
   
   public void Render(){
+    translate(camera.transform.position.x, camera.transform.position.y);
+    
     //Color is normalized
     background((int)clearColor.x * 255, (int)clearColor.y * 255, (int)clearColor.z * 255, (int)clearColor.w * 255);
         

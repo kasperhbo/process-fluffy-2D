@@ -2,7 +2,6 @@ class GameObject{
 
     private ArrayList<Component> components = new ArrayList<Component>();
     public Transform transform =  new Transform();    
-    public Transform renderTransform = new Transform();
     public String name = "";
     
     public GameObject(String name)
@@ -29,10 +28,6 @@ class GameObject{
 
     public void Render(Camera camera){        
         fill(0,0,0,0);     
-        
-        renderTransform.position.x = transform.position.x - camera.transform.position.x;
-        renderTransform.position.y = transform.position.y + camera.transform.position.y;
-        renderTransform.rotationAngle = transform.rotationAngle;
         
         for (Component co : components) {            
             co.Render(camera);

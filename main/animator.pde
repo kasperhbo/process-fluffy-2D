@@ -19,6 +19,6 @@ public class Animator extends Component{
     @Override
     public void Render(Camera cam){
         frame = (frame+1) % imageCount;
-        image(images[frame],  gameObject.renderTransform.position.x, gameObject.renderTransform.position.y);        
+        image(images[frame], gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.scale.x, gameObject.transform.scale.y);
     }
 }
