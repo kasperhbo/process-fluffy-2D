@@ -89,6 +89,15 @@ public abstract class Scene{
       GameObject go = gameObjects.get(obj.getKey());
       go.Render(camera);
     }
+    
+    //UpdateColliders //TODO: Add this
+    for (Map.Entry obj : gameObjects.entrySet()) {
+      GameObject go1 = gameObjects.get(obj.getKey());
+      for (Map.Entry obj1 : gameObjects.entrySet()) {
+        GameObject go2 = gameObjects.get(obj.getKey());
+        
+      }
+    }
   } 
   
   public void SetVisualizeColliders(boolean visualizeColliders){

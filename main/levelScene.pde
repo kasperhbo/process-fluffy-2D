@@ -1,9 +1,10 @@
 public class LevelScene extends Scene{
 
     GameObject go;
+    BoxCollider col; 
     
     boolean firstRun = true;
-
+    
     public LevelScene(){        
         
     }
@@ -16,7 +17,7 @@ public class LevelScene extends Scene{
 
         go = new GameObject("harry", new Vector2(400, 400), new Vector2(50,50));
         
-        BoxCollider col = new BoxCollider(go);        
+        col = new BoxCollider(go);        
         SpriteRenderer rend = new SpriteRenderer(go, "apple.png");
 
         go.AddComponent(rend);
@@ -32,6 +33,10 @@ public class LevelScene extends Scene{
     public void Update(float dt){
       
       super.Update(dt);  
+      
+      if(Collision.PointInBox(mouseX, mouseY,col)){
+        print("Mouse colliding with: " + col.GetParent().GetName() + "\n");
+      }
       
       if(firstRun){
           firstRun = false; 

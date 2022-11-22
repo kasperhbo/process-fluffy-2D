@@ -2,7 +2,7 @@ class GameObject{
 
     private ArrayList<Component> components = new ArrayList<Component>();
     private ArrayList<Collider> colliders = new ArrayList<Collider>();
-
+        
     private HashMap<String,AudioSource> audioSources = new HashMap<String,AudioSource>();
     
     public Transform transform =  new Transform();

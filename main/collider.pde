@@ -6,6 +6,10 @@ public abstract class Collider{
     {
         this.parent = parent;
     }
+    
+    public GameObject GetParent(){
+      return parent;
+    }
 
     public abstract boolean IsPointInCollider(float px, float py);
     public abstract void Visualize();
