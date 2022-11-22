@@ -1,0 +1,39 @@
+import shiffman.box2d.*;
+
+private Scene currentScene = null;
+
+B box2d;
+
+float beginTime = getTime();
+float endTime;
+float dt = -1.0f;
+
+void setup() {
+    box2d = new PBox2D(this);
+    // Initializes a Box2D world with default settings
+    box2d.createWorld();
+    currentScene = new levelScene();
+    size(800, 800);
+}
+
+void draw() {   
+
+    if (dt >= 0) {
+        currentScene.Update(dt);
+    }
+    
+    endTime = getTime();
+    dt = endTime - beginTime;
+    beginTime = endTime;
+}
+
+// public static float GetDeltaTime(){
+//     return dt;
+// }
+
+private float timeStarted = System.nanoTime();
+
+private float getTime() 
+{ 
+    return (float)((System.nanoTime() - timeStarted) * 1E-9); 
+}
