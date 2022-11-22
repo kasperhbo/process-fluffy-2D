@@ -1,4 +1,4 @@
-public class Shape{
+public abstract class Shape extends Component{
   
     protected Vector4 fillColor;
     public float x;
@@ -14,13 +14,16 @@ public class Shape{
         this.x = startX;
         this.y = startY;
         this.fillColor = fillColor;
-    }
-
-    public void Render(Camera camera){
-        fill(fillColor.x * 255, fillColor.y * 255, fillColor.z * 255, fillColor.w * 255);
+    }    
+    
+     public void Render(Camera camera){
+       fill(fillColor.x * 255, fillColor.y * 255, fillColor.z * 255, fillColor.w * 255);
         this.x = x + camera.transform.position.x;
         this.y = y - camera.transform.position.y;
     }
+     
+    public abstract void FixedUpdate(float dt);
+    public abstract void Update(float dt);
 }
 
 public class Rect extends Shape{
@@ -46,6 +49,9 @@ public class Rect extends Shape{
         super.Render(camera);
         rect(x, y, width, height);
     }
+    
+    public void FixedUpdate(float dt){}
+    public void Update(float dt){}
 }
 
 public class Circle extends Shape{
@@ -67,4 +73,7 @@ public class Circle extends Shape{
         super.Render(camera);
         circle(x, y, extent);
     }
+    
+    public void FixedUpdate(float dt){}
+    public void Update(float dt){}
 }
