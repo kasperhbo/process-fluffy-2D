@@ -1,31 +1,11 @@
-private Scene currentScene = null;
-
-float beginTime = getTime();
-float endTime;
-float dt = -1.0f;
-
-void setup() {
-    currentScene = new LevelScene();
-    size(800, 800);
+void setup() {    
+    size(1920, 1080);
+    
+    SceneSettings sc = new SceneSettings(true);
+    
+    Window.get().Start(sc, new LevelScene());
 }
 
-void draw() {   
-
-    if (dt >= 0) {
-        currentScene.FixedUpdate(dt);
-    }
-    
-    currentScene.Update(dt);
-    currentScene.Render();
-    
-    endTime = getTime();
-    dt = endTime - beginTime;
-    beginTime = endTime;
-}
-
-private float timeStarted = System.nanoTime();
-
-private float getTime() 
-{ 
-    return (float)((System.nanoTime() - timeStarted) * 1E-9); 
+void draw() {
+    Window.get().Render();
 }

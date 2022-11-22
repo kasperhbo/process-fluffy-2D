@@ -1,32 +1,37 @@
 import java.util.Map;
 
 public abstract class Scene{
-  protected final String name;    
+  
+  protected String name;    
   
   protected Camera camera;
   protected Vector4 clearColor;
   
-  private HashMap<String, GameObject> gameObjects = new HashMap<String, GameObject>();
-   
+  private HashMap<String, GameObject> gameObjects = new HashMap<String, GameObject>();   
   private AudioSource bgMusic = null;
   
-  public Scene(String name){
-    this.name = name;
-    this.camera = new Camera();
-    this.clearColor = new Vector4(1,1,1,1);
-  }  
+  private boolean visualizeColliders = true;
+    
+  public Scene(){}
+  
+  public void Init(String name) {
+      this.name = name;
+      this.camera = new Camera();
+      this.clearColor = new Vector4(1,1,1,1);
+  }
 
-  public Scene(String name, Vector4 clearColor){
+  public void Init(String name, Vector4 clearColor){
     this.name = name;
     this.camera = new Camera();
     this.clearColor = clearColor;
   }  
 
-  public Scene(String name, Vector4 clearColor, Vector2 cameraPosition){
+  public void Init(String name, Vector4 clearColor, Vector2 cameraPosition){
     this.name = name;
     this.camera = new Camera(cameraPosition);
     this.clearColor = clearColor;
-  }  
+  }
+
   
   public void AddGameobjectToScene(GameObject go)
   {
@@ -84,5 +89,13 @@ public abstract class Scene{
       GameObject go = gameObjects.get(obj.getKey());
       go.Render(camera);
     }
-  }        
+  } 
+  
+  public void SetVisualizeColliders(boolean visualizeColliders){
+    this.visualizeColliders = visualizeColliders;
+  }    
+
+  public boolean VisualizeColliders(){
+    return this.visualizeColliders;
+  }       
 }

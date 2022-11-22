@@ -38,6 +38,12 @@ class GameObject{
           co.Render(camera);
       }
 
+      if(Window.get().GetCurrentScene().visualizeColliders)
+      {
+        for (Collider col : colliders) {            
+          col.Visualize();
+        }
+      }
     }
 
     public void FixedUpdate(float dt){

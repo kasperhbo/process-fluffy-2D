@@ -4,9 +4,13 @@ public class LevelScene extends Scene{
     
     boolean firstRun = true;
 
-    public LevelScene(){
+    public LevelScene(){        
         
-      super("Level Scene");     
+    }
+    
+    public void Init(String name){
+        System.out.println("Inside level scene");
+        super.Init("Level Scene");     
         
         this.clearColor = new Vector4(1,0,0,1);
 
@@ -19,7 +23,6 @@ public class LevelScene extends Scene{
         go.AddCollider(col);
         
         AddGameobjectToScene(go);
-
     }
         
     public void FixedUpdate(float dt){
@@ -31,15 +34,9 @@ public class LevelScene extends Scene{
       super.Update(dt);  
       
       if(firstRun){
-            firstRun = false; return;
-      }          
-      
-      BoxCollider box = go.GetCollider(BoxCollider.class);
-      
-      if(box.IsPointInCollider(mouseX, mouseY)){
-        print("in collider");
+          firstRun = false; 
+          return;
       }
-      
     }
     
     public void Render(){

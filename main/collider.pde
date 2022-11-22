@@ -8,4 +8,5 @@ public abstract class Collider{
     }
 
     public abstract boolean IsPointInCollider(float px, float py);
+    public abstract void Visualize();
 }
